@@ -3,7 +3,7 @@
 
 ## 🧪 References
 
-이 프로젝트는 [Deep Understanding of Average Load in Linux](https://blog.devgenius.io/deep-understanding-of-average-load-in-linux-74822e1dbcb1) 컬럼를 참고하여 영감을 받았습니다. 이 컬럼의 통찰력이 이 프로젝트에서 사용된 평균 부하 개념의 이해와 구현에 큰 도움이 되었습니다.
+ [Deep Understanding of Average Load in Linux](https://blog.devgenius.io/deep-understanding-of-average-load-in-linux-74822e1dbcb1) 컬럼를 참고하여 영감을 받았습니다. 이 컬럼의 통찰력이 이 프로젝트에서 사용된 평균 부하 개념의 이해와 구현에 큰 도움이 되었습니다.
 <br/><br/>
 
 ## 👥 팀원 소개
