@@ -43,9 +43,12 @@ Mem:           7.8Gi       369Mi       6.4Gi       1.0Mi       989Mi       7.1Gi
 Swap:             0B          0B          0B
 ```
 
-### 사전 작업
- - stress : 시스템에 부하를 주는 도구로, CPU, 메모리, I/O 등을 인위적으로 사용하여 시스템의 성능을 테스트하는 데 사용됨
- - sysstat: 시스템 성능 모니터링 도구 모음으로, 다양한 성능 데이터를 수집하고 분석할 수 있는 유틸리티(예: iostat, mpstat, pidstat, sar 등)를 포함하고 있음.
+### 사전 설치해야 될 패키지
+- **stress**: 시스템에 부하를 주는 도구로, CPU, 메모리, I/O 등을 인위적으로 사용하여 시스템의 성능을 테스트하는 데 사용됨. 이 도구를 통해 시스템의 안정성과 성능을 평가할 수 있음.
+- **sysstat**: 시스템 성능 모니터링 도구 모음으로, 다양한 성능 데이터를 수집하고 분석할 수 있는 유틸리티(예: `iostat`, `mpstat`, `pidstat`, `sar` 등)를 포함함. 이 도구를 사용하면 시스템의 자원 사용 현황을 모니터링하고 성능 병목 현상을 진단할 수 있음.
+
+사전 작업으로 다음 패키지를 설치:
+
 ```bash
 apt install stress sysstat
 ```
@@ -69,10 +72,10 @@ apt install stress sysstat
 
 ## #️⃣ 시스템의 부하 확인 명령어
 ### uptime
- - **12:18:16:** 현재 시간
- - **up 2 days, 5:19:** 시스템이 2일 5시간 19분 동안 가동 중
- - **4 users:** 현재 시스템에 로그인한 사용자 수
- - **load average:** 0.00, 0.00, 0.00: 1분, 5분, 15분 동안의 평균 부하. (0.00은 대기 중인 작업이 없다는 것을 의미)
+ - ```12:18:16```: 현재 시간
+ - ```up 2 days, 5:19```: 시스템이 2일 5시간 19분 동안 가동 중
+ - ```4 users```: 현재 시스템에 로그인한 사용자 수
+ - ```load average```: 0.00, 0.00, 0.00: 1분, 5분, 15분 동안의 평균 부하. (0.00은 대기 중인 작업이 없다는 것을 의미)
 ```bash
 username@servername:~$ uptime
  12:18:16 up 2 days,  5:19,  4 users,  load average: 0.00, 0.00, 0.00
@@ -85,27 +88,105 @@ username@servername:~$ uptime
 username@servername:~$ top
 ```
 <img src="https://github.com/user-attachments/assets/1d823100-1321-4e15-abc8-2d89fc7617c4" width="650">
+<br>
 
 ### mpstat
+ - 시스템의 CPU 사용 현황을 모니터링 확인 가능
+   
+| 옵션        | 설명                                         |
+|-------------|----------------------------------------------|
+| `-P [cpu]`  | 특정 CPU 또는 CPU 코어의 사용 현황 표시 (예: `all`로 모든 CPU) |
+| `-u`        | CPU 사용률 정보 표시 (기본적으로 활성화)   |
+| `-I`        | CPU 인터럽트 및 컨텍스트 스위치 정보 포함 표시 |
+| `-o [format]` | 출력 형식 지정 (예: `CSV`, `JSON`, `HTML`) |
+| `-r`        | 메모리 사용 정보 포함하여 표시              |
+| `-h`        | 사용 가능한 옵션 및 도움말 정보 출력       |
+| `[interval]` | 데이터 출력 간격을 초 단위로 지정          |
+| `[count]`   | 지정한 횟수만큼 데이터 출력                 |
+
+```bash
+username@servername:~$ mpstat
+Linux 5.15.0-122-generic (servername)   09/23/2024      _x86_64_        (2 CPU)
+
+06:55:56 PM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle
+06:55:56 PM  all    0.20    0.00    0.16    0.07    0.00    0.24    0.00    0.00    0.00   99.33
+```
+<br/><br/>
 
 ## 시스템의 부하 테스트
 
 ### 시나리오 1 : cpu 변동 모니터링
-### uptime 모니터링
-<img src="https://github.com/user-attachments/assets/d733c2cc-3f49-4b16-af75-30e29b1fd2f0" width="650">
+<br/>
 
-### mpstat 모니터링
-#### stess 시작시
-<img src="https://github.com/user-attachments/assets/20dd258f-8071-4e94-b4ee-de5f6f19e369" width="650">
+**1. CPU 사용률이 100%인 시나리오를 시뮬레이션** <br/>
 
-#### stess 종료시
-<img src="https://github.com/user-attachments/assets/fca7cb10-4466-4f80-8c4c-6bec412bd8b8" width="650">
+ - ```--cpu 1``` :  CPU 부하를 1개의 CPU 코어에서 발생시킴
+ - ```timeout 600``` : 부하 테스트를 600초(10분) 동안 실행
+```bash
+stress --cpu 1 --timeout 600
+06:59:33 PM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle
+06:59:38 PM  all   49.85    0.00    0.10    0.20    0.00    0.50    0.00    0.00    0.00   49.35
+06:59:38 PM    0    0.20    0.00    0.20    0.40    0.00    0.99    0.00    0.00    0.00   98.21
+06:59:38 PM    1  100.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00
+```
 
-### pidstat 모니터링
-<img src="https://github.com/user-attachments/assets/5b2bcc6c-a07c-4d1a-9f52-0b45bed33f6e" width="650">
+**2. uptime 모니터링** <br/>
+
+ - ```watch```: 주어진 명령어를 일정 간격으로 반복 실행하여 그 출력을 보여주는 유틸리티. (기본적으로 2초 간격으로 실행)
+
+ - ```d```: 출력의 변경된 부분을 강조 표시.
+
+ - ```uptime```: 시스템의 현재 동작 시간을 보여주는 명령어로, 시스템이 켜져 있는 시간, 현재 사용자 수, 평균 로드(최근 1, 5, 15분 동안의 평균 CPU 사용률)를 표시함.
+```bash
+watch -d uptime
+```
+<img src="https://github.com/user-attachments/assets/6810ddae-4957-4760-ac0e-8fd53ac73729" width="550">
+<br/>
+
+**3. mpstat 모니터링**
+ - ```-P ALL``` : 모든 CPU를 모니터링.
+ - ```5``` :  5초마다 데이터 세트가 출력됨을 나타냄.
+```bash
+mpstat -P ALL 5 
+```
+
+**3-1. stess 시작 시** <br/>
+<img src="https://github.com/user-attachments/assets/20dd258f-8071-4e94-b4ee-de5f6f19e369" width="550">
+
+**3-2. stess 종료 시**  <br/>
+- CPU코어 0번 확인 시 CPU가 실제로 100% 사용 중이지만 iowait가 0인 것을 볼 수 있음. 이는 평균 부하가 증가한 것이 CPU가 100% 사용 중이기 때문임을 나타냄
+<img src="https://github.com/user-attachments/assets/fca7cb10-4466-4f80-8c4c-6bec412bd8b8" width="550">
+
+**pidstat 모니터링** <br/>
+✨ 어떤 프로세스가 CPU 사용량을 100% 확인 작업 <br/>
+ - ```pidstat```: 프로세스 통계 정보를 제공하는 명령어.
+ - ```-u```: CPU 사용률 정보를 표시하도록 지정.
+ - ```5``` : 5초 간격으로 정보를 출력.
+ - ```1``` : 총 1회 데이터를 출력. (5초 후 한 번만 데이터가 출력됨)
+```bash
+pidstat -u 5 1
+Linux 5.15.0-122-generic (servername)   09/23/2024      _x86_64_        (2 CPU)
+
+07:36:12 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+07:36:17 PM     0       599    0.00    0.20    0.00    0.00    0.20     0  kworker/0:3-events
+07:36:17 PM  1000      1340    0.20    0.00    0.00    0.00    0.20     0  node
+07:36:17 PM  1000      6700    0.00    0.20    0.00    0.00    0.20     0  watch
+07:36:17 PM  1000      7925   99.60    0.00    0.00    0.00   99.60     1  stress
+
+Average:      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+Average:        0       599    0.00    0.20    0.00    0.00    0.20     -  kworker/0:3-events
+Average:     1000      1340    0.20    0.00    0.00    0.00    0.20     -  node
+Average:     1000      6700    0.00    0.20    0.00    0.00    0.20     -  watch
+Average:     1000      7925   99.60    0.00    0.00    0.00   99.60     -  stress
+
+```
+CPU 사용률이 100%라는것 확인 가능
 
 ### 시나리오 2 : IO 변동 모니터링
 <img src="https://github.com/user-attachments/assets/c40e46af-2500-450b-88f4-41bdd2b911a7" width="650">
+
+### 시나리오 3: 프로세스 수가 많을 때
+
 
 ## 🧪 References
 
