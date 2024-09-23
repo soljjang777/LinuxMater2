@@ -61,4 +61,18 @@ username@servername:~$ top
 apt install stress sysstat
 ```
 
+## cpu 변동 모니터링
+### uptime 모니터링
+<img src="https://github.com/user-attachments/assets/d733c2cc-3f49-4b16-af75-30e29b1fd2f0" width="650">
+
+### mpstat 모니터링
+#### stess 시작시
+<img src="https://github.com/user-attachments/assets/20dd258f-8071-4e94-b4ee-de5f6f19e369" width="650">
+
+#### stess 종료시
+<img src="https://github.com/user-attachments/assets/fca7cb10-4466-4f80-8c4c-6bec412bd8b8" width="650">
+
+### pidstat 모니터링
+<img src="https://github.com/user-attachments/assets/5b2bcc6c-a07c-4d1a-9f52-0b45bed33f6e" width="650">
+
 
