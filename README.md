@@ -1,10 +1,10 @@
-# Deep Understanding of Average Load in Linux
-## 개요
+# :fire: Deep Understanding of Average Load in Linux
+## 🔔 개요
 리눅스 평균 부하(Load Average)는 시스템의 성능을 평가하는 중요한 지표로, 특정 시간 동안 CPU와 프로세서의 부하를 나타냅니다. 이 값은 시스템의 안정성과 처리 능력을 이해하는 데 필수적이며, 특히 서버 관리 및 성능 최적화에 있어 중요한 역할을 합니다.
-리눅스의 평균 부하를 이해하기 위해 공부해보았습니다.
+ 서비스를 중단 없이 사용하기 위해 자원관리가 필요하기 때문에 평균 부하에 관해 공부하였습니다.
 <br/><br/>
 
-## 시스템 환경
+## 💻 시스템 환경
 ### Description
 **Ubuntu 22.04.5 LTS**
 
@@ -16,9 +16,18 @@ username@servername:~$ cat /proc/cpuinfo
 cpu cores       : 2
 ...
 ```
+### RAM
+```bash
+username@servername:~/test$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           7.8Gi       369Mi       6.4Gi       1.0Mi       989Mi       7.1Gi
+Swap:             0B          0B          0B
+```
+
+
 <br/><br/>
 
-## 리눅스 평균 부하(Load Average)
+## ⚡ 리눅스 평균 부하(Load Average)
 ### 평균 부하의 정의
 평균 부하는 단위 시간 동안 실행 가능하거나 중단 불가능한 상태의 프로세스의 평균 수를 나타냄. 이는 CPU 사용률과는 다름.
 
@@ -34,7 +43,7 @@ cpu cores       : 2
  - 평균 부하가 2이고 CPU가 1개인 시스템: 프로세스의 절반이 CPU 시간을 놓고 경쟁.
  <br/> <br/>
 
-## 시스템의 부하 확인 명령어
+## #️⃣ 시스템의 부하 확인 명령어
 ### uptime
  - **12:18:16:** 현재 시간
  - **up 2 days, 5:19:** 시스템이 2일 5시간 19분 동안 가동 중
@@ -52,6 +61,8 @@ username@servername:~$ uptime
 username@servername:~$ top
 ```
 <img src="https://github.com/user-attachments/assets/1d823100-1321-4e15-abc8-2d89fc7617c4" width="650">
+
+### mpstat
 
 ## 시스템의 부하 테스트
 ### 사전 작업
@@ -75,4 +86,6 @@ apt install stress sysstat
 ### pidstat 모니터링
 <img src="https://github.com/user-attachments/assets/5b2bcc6c-a07c-4d1a-9f52-0b45bed33f6e" width="650">
 
+### 시나리오 2 : IO 변동 모니터링
+<img src="https://github.com/user-attachments/assets/c40e46af-2500-450b-88f4-41bdd2b911a7" width="650">
 
