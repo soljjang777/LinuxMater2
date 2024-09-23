@@ -1,9 +1,9 @@
 # :fire: Deep Understanding of Average Load in Linux
 <br/>
 
-## 🧪 References
-
- [Deep Understanding of Average Load in Linux](https://blog.devgenius.io/deep-understanding-of-average-load-in-linux-74822e1dbcb1) 컬럼를 참고하여 영감을 받았습니다. 이 컬럼의 통찰력이 이 프로젝트에서 사용된 평균 부하 개념의 이해와 구현에 큰 도움이 되었습니다.
+## 🔔 개요
+**리눅스 평균 부하(Load Average)는 시스템의 성능을 평가하는 중요한 지표**로, 특정 시간 동안 CPU와 프로세서의 부하를 나타냅니다. 이 값은 시스템의 안정성과 처리 능력을 이해하는 데 필수적이며, 특히 서버 관리 및 성능 최적화에 있어 중요한 역할을 합니다.
+ 서비스를 중단 없이 사용하기 위해 자원관리가 필요하기 때문에 평균 부하에 관하여 테스트 해보았습니다.
 <br/><br/>
 
 ## 👥 팀원 소개
@@ -15,14 +15,16 @@
 
 <br/>
 
-## 🔔 개요
-**리눅스 평균 부하(Load Average)는 시스템의 성능을 평가하는 중요한 지표**로, 특정 시간 동안 CPU와 프로세서의 부하를 나타냅니다. 이 값은 시스템의 안정성과 처리 능력을 이해하는 데 필수적이며, 특히 서버 관리 및 성능 최적화에 있어 중요한 역할을 합니다.
- 서비스를 중단 없이 사용하기 위해 자원관리가 필요하기 때문에 평균 부하에 관하여 공부하였습니다.
-<br/><br/>
-
-## 💻 시스템 환경
-### Description
-**Ubuntu 22.04.5 LTS**
+## 💻 시스템 환경 및 사전 작업
+### OS Version
+```bash
+username@servername:~$ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 22.04.5 LTS
+Release:        22.04
+Codename:       jammy
+```
 
 ### CPU 
  - CPU 갯수 확인 : CPU의 개수를 알게 되면 평균 부하가 CPU 개수를 초과할 때 시스템이 과부하 상태라는 것을 알 수 있음.
@@ -41,7 +43,12 @@ Mem:           7.8Gi       369Mi       6.4Gi       1.0Mi       989Mi       7.1Gi
 Swap:             0B          0B          0B
 ```
 
-
+### 사전 작업
+ - stress : 시스템에 부하를 주는 도구로, CPU, 메모리, I/O 등을 인위적으로 사용하여 시스템의 성능을 테스트하는 데 사용됨
+ - sysstat: 시스템 성능 모니터링 도구 모음으로, 다양한 성능 데이터를 수집하고 분석할 수 있는 유틸리티(예: iostat, mpstat, pidstat, sar 등)를 포함하고 있음.
+```bash
+apt install stress sysstat
+```
 <br/><br/>
 
 ## ⚡ 리눅스 평균 부하(Load Average)
@@ -82,13 +89,7 @@ username@servername:~$ top
 ### mpstat
 
 ## 시스템의 부하 테스트
-### 사전 작업
- - stress : 시스템에 부하를 주는 도구로, CPU, 메모리, I/O 등을 인위적으로 사용하여 시스템의 성능을 테스트하는 데 사용됨
- - sysstat: 시스템 성능 모니터링 도구 모음으로, 다양한 성능 데이터를 수집하고 분석할 수 있는 유틸리티(예: iostat, mpstat, pidstat, sar 등)를 포함하고 있음.
-```bash
-apt install stress sysstat
-```
-<br/><br/>
+
 ### 시나리오 1 : cpu 변동 모니터링
 ### uptime 모니터링
 <img src="https://github.com/user-attachments/assets/d733c2cc-3f49-4b16-af75-30e29b1fd2f0" width="650">
@@ -105,4 +106,9 @@ apt install stress sysstat
 
 ### 시나리오 2 : IO 변동 모니터링
 <img src="https://github.com/user-attachments/assets/c40e46af-2500-450b-88f4-41bdd2b911a7" width="650">
+
+## 🧪 References
+
+ [Deep Understanding of Average Load in Linux](https://blog.devgenius.io/deep-understanding-of-average-load-in-linux-74822e1dbcb1) 컬럼를 참고하여 영감을 받았습니다. 이 컬럼의 통찰력이 이 프로젝트에서 사용된 평균 부하 개념의 이해와 구현에 큰 도움이 되었습니다.
+<br/><br/>
 
