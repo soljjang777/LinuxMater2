@@ -33,6 +33,7 @@ cpu cores       : 2
 ...
 ```
 ### RAM
+-  RAM이 부족하면 스왑 공간을 사용하게 되어 성능 저하가 발생하고, 프로세스가 메모리 대기 상태에 빠질 수 있습니다. 따라서 평균 부하와 RAM을 함께 모니터링하기 위해 RAM 확인 필수.
 ```bash
 username@servername:~/test$ free -h
                total        used        free      shared  buff/cache   available
