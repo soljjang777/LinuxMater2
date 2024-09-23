@@ -1,10 +1,9 @@
 # :fire: Deep Understanding of Average Load in Linux
 <br/>
 
-## References
+## 🧪 References
 
-This project is inspired by the article [Deep Understanding of Average Load in Linux](https://blog.devgenius.io/deep-understanding-of-average-load-in-linux-74822e1dbcb1). The insights from this article helped shape the understanding and implementation of the load average concepts used in this project.
-
+이 프로젝트는 [Deep Understanding of Average Load in Linux](https://blog.devgenius.io/deep-understanding-of-average-load-in-linux-74822e1dbcb1) 기사를 참고하여 영감을 받았습니다. 이 기사의 통찰력이 이 프로젝트에서 사용된 평균 부하 개념의 이해와 구현에 큰 도움이 되었습니다.
 
 ## 🔔 개요
 **리눅스 평균 부하(Load Average)는 시스템의 성능을 평가하는 중요한 지표**로, 특정 시간 동안 CPU와 프로세서의 부하를 나타냅니다. 이 값은 시스템의 안정성과 처리 능력을 이해하는 데 필수적이며, 특히 서버 관리 및 성능 최적화에 있어 중요한 역할을 합니다.
