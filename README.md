@@ -60,8 +60,8 @@ username@servername:~$ top
 ```bash
 apt install stress sysstat
 ```
-
-## cpu 변동 모니터링
+<br/><br/>
+### 시나리오 1 : cpu 변동 모니터링
 ### uptime 모니터링
 <img src="https://github.com/user-attachments/assets/d733c2cc-3f49-4b16-af75-30e29b1fd2f0" width="650">
 
