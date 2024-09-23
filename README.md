@@ -129,6 +129,7 @@ stress --cpu 1 --timeout 600
 06:59:38 PM    0    0.20    0.00    0.20    0.40    0.00    0.99    0.00    0.00    0.00   98.21
 06:59:38 PM    1  100.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00
 ```
+<br/>
 
 **2. uptime 모니터링** <br/>
 
@@ -141,14 +142,15 @@ stress --cpu 1 --timeout 600
 watch -d uptime
 ```
 <img src="https://github.com/user-attachments/assets/6810ddae-4957-4760-ac0e-8fd53ac73729" width="550">
-<br/>
+<br/><br/>
 
-**3. mpstat 모니터링**
+**3. mpstat 모니터링** <br>
  - ```-P ALL``` : 모든 CPU를 모니터링.
  - ```5``` :  5초마다 데이터 세트가 출력됨을 나타냄.
 ```bash
 mpstat -P ALL 5 
 ```
+<br>
 
 **3-1. stess 시작 시** <br/>
 <img src="https://github.com/user-attachments/assets/20dd258f-8071-4e94-b4ee-de5f6f19e369" width="550">
@@ -156,6 +158,7 @@ mpstat -P ALL 5
 **3-2. stess 종료 시**  <br/>
 - CPU코어 0번 확인 시 CPU가 실제로 100% 사용 중이지만 iowait가 0인 것을 볼 수 있음. 이는 평균 부하가 증가한 것이 CPU가 100% 사용 중이기 때문임을 나타냄
 <img src="https://github.com/user-attachments/assets/fca7cb10-4466-4f80-8c4c-6bec412bd8b8" width="550">
+<br><br/>
 
 **pidstat 모니터링** <br/>
 ✨ 어떤 프로세스가 CPU 사용량을 100% 확인 작업 <br/>
@@ -181,6 +184,7 @@ Average:     1000      7925   99.60    0.00    0.00    0.00   99.60     -  stres
 
 ```
 CPU 사용률이 100%라는것 확인 가능
+<br>
 
 ### 시나리오 2 : IO 변동 모니터링
 <img src="https://github.com/user-attachments/assets/c40e46af-2500-450b-88f4-41bdd2b911a7" width="650">
